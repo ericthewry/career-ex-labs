@@ -2,27 +2,28 @@ import java.util.concurrent.TimeUnit;
 
 /* ATTENTION! Edit the following line to switch which lab you are working on! */
 
-int labNumber = 1;
+int labNumber = 2;
 
 /*
  * -------------------------IGNORE CODE BELOW THIS LINE-------------------------
  */
 
-int stepX; 
-int runX;
-int resetX;
+int stepX,
+    runX,
+    resetX;
 
 // shared baseline, height, and width for buttons
-int buttonY;
-int buttonW; 
-int buttonH;
+int buttonY,
+    buttonW,
+    buttonH;
 
 color rectColor, 
       runningColor, 
       rectHighlight;
-boolean rectOver = false;
-boolean doOneStep = false;
-boolean run = false;
+
+boolean rectOver,
+        doOneStep,
+        run;
 
 boolean SHOW_QUEUE = labNumber > 1;
 boolean PEOPLE = labNumber == 1;
@@ -35,13 +36,17 @@ Network myNetwork;
 PImage img;
 final int MAX_TTA = 5;
 
-
 final int PACKET_SIZE = 40;
 
 int laststep; 
 
 // Called first
 void setup() {
+
+  rectOver = false;
+  doOneStep = false;
+  run = false;
+
   size(950, 650);
   rectColor = color(#1F9CFF);
   runningColor = color(#f9c720);
@@ -120,6 +125,16 @@ void step() {
   }
 }
 
+// ********* important for reset button
+boolean overReset()  {
+  if (mouseX >= resetX && mouseX <= (resetX + buttonW) && 
+      mouseY >= buttonY && mouseY <= (buttonY + buttonH)) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
 // ********* important for step button
 boolean overStep()  {
   if (mouseX >= stepX && mouseX <= (stepX + buttonW) && 
@@ -142,6 +157,9 @@ boolean overRun()  {
 
 // ******** important for the buttons
 void mouseClicked() { 
+  if (overReset()) {
+    setup();
+  }
   if (overStep()) {
     doOneStep = true;
     laststep = -10000;
