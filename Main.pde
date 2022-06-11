@@ -9,10 +9,13 @@ int labNumber = 1;
  */
 
 int stepX; 
-int stepY;
-int stepW; 
-int stepH;
 int runX;
+int resetX;
+
+// shared baseline, height, and width for buttons
+int buttonY;
+int buttonW; 
+int buttonH;
 
 color rectColor, 
       runningColor, 
@@ -43,9 +46,12 @@ void setup() {
   rectColor = color(#1F9CFF);
   runningColor = color(#f9c720);
   rectHighlight = color(#74C1FF);
-  runX = 650;
-  stepX = 792; stepY = 550;
-  stepW = 120; stepH = 50;
+  runX = 508;
+  stepX = 650;
+  resetX = 792; 
+  buttonY = 550;
+  buttonW = 120; 
+  buttonH = 50;
   myNetwork = new Network();
   myNetwork.sendAllPackets();
   laststep = millis();
@@ -57,14 +63,22 @@ void draw() {
   myNetwork.drawNetwork();
   //step();
   
-    // *********** Step button
+  // *********** Reset button
   fill(rectColor);
   stroke(#BECAD3);
-  rect(stepX, stepY, stepW, stepH, 5);
+  rect(resetX, buttonY, buttonW, buttonH, 5);
   fill(70);
   textSize(26);
   textAlign(CENTER, CENTER);
-  text("Step", stepX + (stepW/2), stepY + (stepH/2));
+  text("Reset", resetX + (buttonW/2), buttonY + (buttonH/2.5));
+  // *********** Step button
+  fill(rectColor);
+  stroke(#BECAD3);
+  rect(stepX, buttonY, buttonW, buttonH, 5);
+  fill(70);
+  textSize(26);
+  textAlign(CENTER, CENTER);
+  text("Step", stepX + (buttonW/2), buttonY + (buttonH/2.5));
   // *********** Run button
   if (run){
     fill(runningColor);
@@ -72,17 +86,17 @@ void draw() {
     fill(rectColor);
   }
   stroke(#BECAD3);
-  rect(runX, stepY, stepW, stepH, 5);
+  rect(runX, buttonY, buttonW, buttonH, 5);
   textSize(26);
   textAlign(CENTER, CENTER);
   if (run) {
     fill(255,255,255);
-    text("Pause", runX + (stepW/2), stepY + (stepH/2));    
+    text("Pause", runX + (buttonW/2), buttonY + (buttonH/2.5));    
   } else {
     fill(70);
-    text("Run", runX + (stepW/2), stepY + (stepH/2));
+    text("Run", runX + (buttonW/2), buttonY + (buttonH/2.5));
   }
-  
+
   // ********* makes the buttons do things
   int timeDiff = millis() - laststep;
   if (timeDiff < 0 || timeDiff > 350){
@@ -108,8 +122,8 @@ void step() {
 
 // ********* important for step button
 boolean overStep()  {
-  if (mouseX >= stepX && mouseX <= (stepX + stepW) && 
-      mouseY >= stepY && mouseY <= (stepY + stepH)) {
+  if (mouseX >= stepX && mouseX <= (stepX + buttonW) && 
+      mouseY >= buttonY && mouseY <= (buttonY + buttonH)) {
     return true;
   } else {
     return false;
@@ -118,8 +132,8 @@ boolean overStep()  {
 
 // ********** important for run button
 boolean overRun()  {
-  if (mouseX >= runX && mouseX <= (runX + stepW) && 
-      mouseY >= stepY && mouseY <= (stepY + stepH)) {
+  if (mouseX >= runX && mouseX <= (runX + buttonW) && 
+      mouseY >= buttonY && mouseY <= (buttonY + buttonH)) {
     return true;
   } else {
     return false;

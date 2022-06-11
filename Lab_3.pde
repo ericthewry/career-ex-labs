@@ -8,7 +8,6 @@ class DefenseRouter extends UnsafeRouter implements Router {
     return false; 
   }
   
-  
   DefenseRouter(int idi, int xi, int yi, boolean _queueOnLeft){
     super(idi, xi, yi, _queueOnLeft);
     maxQueueSize = 10;
@@ -17,5 +16,5 @@ class DefenseRouter extends UnsafeRouter implements Router {
   DefenseRouter(int idi, int xi, int yi) {
     this(idi, xi, yi, false); 
   }
-    
+
 }
