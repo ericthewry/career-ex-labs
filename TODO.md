@@ -1,5 +1,3 @@
 - touch up lab instructions, make them point to this github
 - move to _two_ labs over three sessions
 - hunt down typo in cheat sheet
-- lab 1 should have no answers, lab 2/3 should have no dependencies on lab 1
-- lab 2/3: should be possible to turn a router un-evil

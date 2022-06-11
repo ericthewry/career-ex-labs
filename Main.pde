@@ -177,12 +177,23 @@ void mouseClicked() {
     Router dst = myNetwork.overRouter();
     if (dst != null) {
       if (dst == clickSrc) {
-        if (labNumber > 1) {
-          Router ddos = new EvilRouter(null, clickSrc.getId(), clickSrc.getX(), clickSrc.getY());
-          myNetwork.replaceRouter(clickSrc, ddos);
-          clickSrc = ddos;
-          println("turn ", clickSrc.getId(), "into DDoS");
-          clickSrc.mark();
+        if (labNumber > 1) {          
+          if (clickSrc instanceof EvilRouter) {
+            Router newrouter = 
+              labNumber == 2 
+              ? new UnsafeRouter(clickSrc.getId(),  clickSrc.getX(), clickSrc.getY()) 
+              : new DefenseRouter(clickSrc.getId(), clickSrc.getX(), clickSrc.getY());
+            myNetwork.replaceRouter(clickSrc, newrouter);
+            clickSrc = newrouter;
+            println("turn ", clickSrc.getId(), " un-evil");
+            clickSrc.mark();
+          } else { 
+            Router ddos = new EvilRouter(null, clickSrc.getId(), clickSrc.getX(), clickSrc.getY());
+            myNetwork.replaceRouter(clickSrc, ddos);
+            clickSrc = ddos;
+            println("turn ", clickSrc.getId(), " evil");
+            clickSrc.mark();
+          }
         } else {
           clickSrc.unmark();
           clickSrc = null;
