@@ -6,11 +6,7 @@ class EvilRouter extends DDoSRouter implements Router {
   }
  
   void evilItsForMe(Packet p) {
-    if (getSender(p) == target) {
-      dontSendPacket();
-    } else {
-      replyTo(p);
-    }
+    replyTo(p);
   }
   
   void evilDontKnow(Router neighbor, Packet p) {

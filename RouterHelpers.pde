@@ -190,8 +190,6 @@ abstract class AbstractRouter implements Router {
     return -0.4 * queueHeight(); 
   }
   
-  void dontSendPacket(){ return; }
-  
   int amountInQueueFrom(Router sender) {
     Map<Integer, Integer> heavyHitters = new HashMap<Integer, Integer>();
     
@@ -205,10 +203,6 @@ abstract class AbstractRouter implements Router {
   
   float portionOfQueueFrom(Router sender) {
     return float(amountInQueueFrom(sender)) / float(maxQueueSize); 
-  }
-  
-  float amountInQueue() {
-    return queue.size(); 
   }
 
   boolean blockSender(Router r) {
@@ -239,7 +233,7 @@ abstract class AbstractRouter implements Router {
   }
   
  boolean equals(Object o){
-   if (o != null && o instanceof AbstractRouter){
+   if (o instanceof AbstractRouter){
      return id == ((AbstractRouter) o).getId();
    } else {
      return false;
@@ -513,7 +507,7 @@ abstract class AbstractRouter implements Router {
   }
   
   boolean contactEstablished(Router r) {
-    return r != null && fwd[r.getId()] != null;
+    return fwd[r.getId()] != null;
   }
   
     
@@ -650,9 +644,10 @@ abstract class DDoSRouter extends AbstractRouter implements Router {
   void step() {
     println("stepping ddos router", id);
     if (hasFailed()) return;
-    evilDoEveryStep(target);
+    if (target != null) {
+      evilDoEveryStep(target);
+    }
     fill_queue();
-    //numberSteps = max(numerAtkPackets + numberSteps, 1);
     for (int i = 0; i < numberAtkPackets + numberSteps; i++){
       super.step();
     }
