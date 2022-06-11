@@ -1,10 +1,12 @@
 import java.util.concurrent.TimeUnit;
 
-/**** ATTENTION :: Edit the following line to switch which lab you are working on! **/
+/* ATTENTION! Edit the following line to switch which lab you are working on! */
 
-int labNumber = 3;
+int labNumber = 1;
 
-/*** IGNORE CODE BELOW THIS LINE ***/
+/*
+ * -------------------------IGNORE CODE BELOW THIS LINE-------------------------
+ */
 
 int stepX; 
 int stepY;

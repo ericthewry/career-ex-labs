@@ -4,7 +4,7 @@ class EvilRouter extends DDoSRouter implements Router {
     // ToDo : Implement this command!
   }
  
-  void evilItsForMe(Packet p){
+  void evilItsForMe(Packet p) {
     if (getSender(p) == target) {
       dontSendPacket();
     } else {
@@ -24,11 +24,11 @@ class EvilRouter extends DDoSRouter implements Router {
    * Don't worry about these lines of code below here -----
    **/
   
-  EvilRouter (Router _target, int _id, int _x, int _y){
+  EvilRouter (Router _target, int _id, int _x, int _y) {
     super(_target, _id, _x, _y);
   }
   
-  EvilRouter (int _id, int _x, int _y){
+  EvilRouter (int _id, int _x, int _y) {
     this(null, _id, _x, _y);
   }
   
@@ -36,7 +36,7 @@ class EvilRouter extends DDoSRouter implements Router {
   
 }
 
-class UnsafeRouter extends AbstractRouter implements Router{
+class UnsafeRouter extends AbstractRouter implements Router {
   
   void itsForMe(Packet p) {
     replyTo(p);
@@ -46,7 +46,7 @@ class UnsafeRouter extends AbstractRouter implements Router{
     forwardToAllExcept(neighbor, p); 
   }
   
-  void doKnow(Router neighbor, Packet p){
+  void doKnow(Router neighbor, Packet p) {
     forwardTo(rememberHowToGetTo(getRecipient(p)), p);
   }
   
@@ -56,14 +56,16 @@ class UnsafeRouter extends AbstractRouter implements Router{
     }
   }
   
-  /**
-   * Ignore code below this line
-   */ 
-  UnsafeRouter(int idi, int xi, int yi, boolean _queueOnLeft){
+/*
+ * -------------------------IGNORE CODE BELOW THIS LINE-------------------------
+ */
+
+  UnsafeRouter(int idi, int xi, int yi, boolean _queueOnLeft) {
     super(idi, xi, yi, _queueOnLeft);
   }
   
   UnsafeRouter(int idi, int xi, int yi) {
     this(idi, xi, yi, false); 
   }
+
 }

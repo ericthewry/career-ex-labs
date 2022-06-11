@@ -17,6 +17,5 @@ class DefenseRouter extends UnsafeRouter implements Router {
   DefenseRouter(int idi, int xi, int yi) {
     this(idi, xi, yi, false); 
   }
-  
-  
+    
 }
