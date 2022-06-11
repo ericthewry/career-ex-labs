@@ -2,6 +2,7 @@ class EvilRouter extends DDoSRouter implements Router {
   
   void evilDoEveryStep(Router target) {
     // To Do : Implement this command!
+    sendAPacketTo(target);
   }
  
   void evilItsForMe(Packet p) {
@@ -20,22 +21,21 @@ class EvilRouter extends DDoSRouter implements Router {
       forwardTo(rememberHowToGetTo(neighbor), p);
   }  
   
-  /** 
-   * Don't worry about these lines of code below here -----
-   **/
-  
+  // Ignore! You don't need to read or understand this for your solution
   EvilRouter (Router _target, int _id, int _x, int _y) {
     super(_target, _id, _x, _y);
   }
-  
+
+  // Ignore! You don't need to read or understand this for your solution
   EvilRouter (int _id, int _x, int _y) {
     this(null, _id, _x, _y);
   }
   
-  /** Don't worry about about code above this line ---- **/
-  
 }
 
+/* 
+ * Here's what all the other routers (the victims of the evil router) are doing!
+ */
 class UnsafeRouter extends AbstractRouter implements Router {
   
   void itsForMe(Packet p) {
