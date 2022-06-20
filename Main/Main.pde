@@ -186,14 +186,13 @@ void mouseClicked() {
             myNetwork.replaceRouter(clickSrc, newrouter);
             clickSrc = newrouter;
             println("turn ", clickSrc.getId(), " un-evil");
-            clickSrc.mark();
           } else { 
             Router ddos = new EvilRouter(null, clickSrc.getId(), clickSrc.getX(), clickSrc.getY());
             myNetwork.replaceRouter(clickSrc, ddos);
             clickSrc = ddos;
             println("turn ", clickSrc.getId(), " evil");
-            clickSrc.mark();
           }
+          clickSrc = null;
         } else {
           clickSrc.unmark();
           clickSrc = null;
