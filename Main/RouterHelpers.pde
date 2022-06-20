@@ -645,6 +645,7 @@ abstract class DDoSRouter extends AbstractRouter implements Router {
     println("stepping ddos router", id);
     if (hasFailed()) return;
     if (target != null) {
+      print("evilDoEveryStep");
       evilDoEveryStep(target);
     }
     fill_queue();
@@ -665,6 +666,7 @@ abstract class DDoSRouter extends AbstractRouter implements Router {
   }
   
   void setTarget(Router t){
+    print("setting target");
     target = t; 
   }
   
@@ -689,8 +691,12 @@ abstract class DDoSRouter extends AbstractRouter implements Router {
   
   @Override 
   void sendAPacketTo(Router r){
-    setTarget(r);
-    numberAtkPackets++;
+    if (target == r) {
+      numberAtkPackets++;
+    } else {
+      setTarget(r);
+    }
+    println("send", numberAtkPackets, "to", r.getId());
     //super.sendAPacketTo(r);
   }
   
