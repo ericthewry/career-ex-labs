@@ -622,6 +622,10 @@ abstract class AbstractPerson extends AbstractRouter implements Router {
      return (Person) super.rememberHowToGetTo(p);
   }
 
+  void sendALetterTo(Person p){
+     sendAPacketTo(p); 
+  }
+
   
 }
 

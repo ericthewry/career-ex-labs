@@ -2,7 +2,7 @@ import java.util.concurrent.TimeUnit;
 
 /* ATTENTION! Edit the following line to switch which lab you are working on! */
 
-int labNumber = 2;
+int labNumber = 1;
 
 /*
  * -------------------------IGNORE CODE BELOW THIS LINE-------------------------
